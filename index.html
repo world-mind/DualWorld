@@ -151,10 +151,11 @@
             
             <div class="abstract-content">
                 <p class="lead">
-                    Whole-body manipulation in humanoid robots requires <strong>coherent understanding across time and space</strong>. 
-                    Traditional approaches struggle with the challenge: <em>isolated visual snapshots lack temporal consistency</em>, 
-                    while <em>high-frequency real-time control demands fast inference</em>. How do we maintain consistent visual 
-                    guidance throughout complex manipulation sequences without sacrificing control responsiveness?
+                    Current Vision-Language-Action (VLA) models face two major bottlenecks: scarce action-labeled data and reliance on manual task segmentation, which limit scalability and policy transfer. While world models trained on internet-scale video data offer a promising alternative, they often lack semantic structure in their representations, and the small diffusion backbones used for real-time control weaken physical reasoning.
+To overcome these limitations, we introduce DualWorld, a dual-world model system that operates asynchronously in visual space:
+A “slow” planning model​ performs full-frame rollouts over ~6-second horizons using a medium-sized video diffusion model, preserving strong generative priors for long-term reasoning.
+A “fast” reactive model​ encodes both predicted and real-time visual observations into actionable representations using a state-of-the-art video encoder, enabling real-time control.
+This design allows learning from large-scale, diverse-quality datasets—including human videos and cross-embodiment robot trajectories—without manual annotation or curation. Across manipulation and loco-manipulation benchmarks, DualWorld matches or surpasses leading VLA and compact world-model policies in success rate and generalization, demonstrating a viable path toward practical embodied AI.
                 </p>
 
                 <div class="dual-system-intro">
@@ -404,7 +405,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 DualWorld. All rights reserved.</p>
+                <p>&copy; 2025 DualWorld. All rights reserved.</p>
             </div>
         </div>
     </footer>
