@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DualWorld | A Tale of Two Worlds</title>
+    <meta name="description" content="DualWorld: Dual-System World Models for Embodied AI - Enabling Whole-Body Manipulation Through Consistent Visual Guidance">
+    <meta property="og:title" content="DualWorld: Dual-System World Models">
+    <meta property="og:description" content="Consistent Visual Guidance for Whole-Body Manipulation in Humanoid Robots">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="worldmind-style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">DW</div>
+                <span class="logo-text">DualWorld</span>
+            </a>
+            <div class="nav-links">
+                <a href="#demos" class="nav-link">DEMOS</a>
+                <a href="#abstract" class="nav-link">ABSTRACT</a>
+                <a href="#performance" class="nav-link">PERFORMANCE</a>
+                <a href="#architecture" class="nav-link">ARCHITECTURE</a>
+                <a href="#method" class="nav-link">METHOD</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="hero-gradient"></div>
+            <div class="particle-field"></div>
+        </div>
+        <div class="hero-content">
+            <span class="hero-tag">DUAL-SYSTEM WORLD MODELS FOR EMBODIED AI</span>
+            <h1 class="hero-title">DualWorld</h1>
+            <p class="hero-subtitle">A Tale of Two Worlds: Enabling Whole-Body Manipulation<br>Through Consistent Visual Guidance</p>
+            <div class="system-tagline">
+                <div class="system-fast">⚡ Fast Reasoner: V-JEPA (600M) @ 30Hz</div>
+                <div class="system-separator">+</div>
+                <div class="system-slow">🧠 Slow Thinker: Wan2.2 (5B) @ 1Hz</div>
+            </div>
+            <div class="hero-actions">
+                <a href="#demos" class="btn btn-primary">See It In Action</a>
+                <a href="https://github.com/world-mind/DualWorld" class="btn btn-secondary" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                        <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+                    </svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <span>Scroll to explore</span>
+        </div>
+    </section>
+
+    <!-- Demos Section - Moved to front for immediate impact -->
+    <section id="demos" class="visualizations-section">
+        <div class="container">
+            <div class="section-header centered">
+                <span class="section-tag">REAL-WORLD DEMONSTRATIONS</span>
+                <h2 class="section-title">Whole-Body Manipulation in Action</h2>
+                <p class="section-description">
+                    See DualWorld enabling humanoid robots to perform complex manipulation tasks in diverse real-world scenarios
+                </p>
+            </div>
+
+            <!-- Real Robot Demos Grid - Featured First -->
+            <div class="visualization-block">
+                <h3 class="subsection-title">Real-World Whole-Body Manipulation</h3>
+                <div id="demo-grid" class="demo-grid">
+                    <p class="loading-text">Loading demonstrations...</p>
+                </div>
+            </div>
+
+            <!-- Wan2.2 Video Predictions -->
+            <div class="visualization-block">
+                <h3 class="subsection-title">Temporally-Consistent Visual Predictions (33 frames, 6.6s)</h3>
+                <div class="video-prediction-grid">
+                    <div class="prediction-example">
+                        <video autoplay loop muted playsinline controls>
+                            <source src="./assets/kitchen.mp4" type="video/mp4">
+                        </video>
+                        <p class="video-caption">Kitchen Scene</p>
+                    </div>
+                    <div class="prediction-example">
+                        <video autoplay loop muted playsinline controls>
+                            <source src="./assets/spray.mp4" type="video/mp4">
+                        </video>
+                        <p class="video-caption">Spray Bottle</p>
+                    </div>
+                    <div class="prediction-example">
+                        <video autoplay loop muted playsinline controls>
+                            <source src="./assets/table.mp4" type="video/mp4">
+                        </video>
+                        <p class="video-caption">Table Interaction</p>
+                    </div>
+                </div>
+                <p class="viz-description">
+                    These predictions demonstrate <strong>visual consistency across the full manipulation horizon</strong>. 
+                    Objects maintain coherent appearance, motions follow physically-plausible trajectories, and spatial 
+                    relationships remain stable—providing reliable guidance for whole-body control throughout the sequence.
+                </p>
+            </div>
+
+            <!-- V-JEPA Feature Maps -->
+            <div class="visualization-block">
+                <h3 class="subsection-title">From Visual Guidance to Motor Commands</h3>
+                <div class="feature-map-grid">
+                    <div class="feature-example">
+                        <img src="./assets/wipe.png" alt="V-JEPA Wipe Features">
+                        <p class="feature-caption">Wiping Motion</p>
+                    </div>
+                    <div class="feature-example">
+                        <img src="./assets/spray.png" alt="V-JEPA Spray Features">
+                        <p class="feature-caption">Spray Action</p>
+                    </div>
+                    <div class="feature-example">
+                        <img src="./assets/trash.png" alt="V-JEPA Trash Features">
+                        <p class="feature-caption">Trash Disposal</p>
+                    </div>
+                </div>
+                <p class="viz-description">
+                    V-JEPA translates the world model's consistent visual predictions into <strong>action-relevant features</strong> 
+                    at 30Hz. These 1280D features capture how to manipulate objects (affordances), where the body should move 
+                    (trajectories), and how to handle occlusions—enabling precise whole-body control that follows the visual guidance.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Abstract Section -->
+    <section id="abstract" class="abstract-section">
+        <div class="container">
+            <div class="section-header centered">
+                <span class="section-tag">ABSTRACT</span>
+                <h2 class="section-title">Consistent Visual Guidance for Whole-Body Control</h2>
+            </div>
+            
+            <div class="abstract-content">
+                <p class="lead">
+                    Whole-body manipulation in humanoid robots requires <strong>coherent understanding across time and space</strong>. 
+                    Traditional approaches struggle with the challenge: <em>isolated visual snapshots lack temporal consistency</em>, 
+                    while <em>high-frequency real-time control demands fast inference</em>. How do we maintain consistent visual 
+                    guidance throughout complex manipulation sequences without sacrificing control responsiveness?
+                </p>
+
+                <div class="dual-system-intro">
+                    <div class="system-card slow-system-card">
+                        <h3>🧠 Slow Thinker: Long-Horizon Visual Guidance</h3>
+                        <h4>Wan2.2 5B - World Model for Consistency</h4>
+                        <p>
+                            Generates <strong>33-frame coherent video predictions</strong> (6.6 seconds) that maintain visual 
+                            consistency across the entire manipulation horizon. This continuous visual "script" guides the robot 
+                            through complex whole-body movements.
+                        </p>
+                        <ul>
+                            <li>Internet-scale physics priors (5B parameters)</li>
+                            <li>Explicit pixel-space predictions for interpretability</li>
+                            <li>Maintains spatial-temporal coherence across full sequence</li>
+                        </ul>
+                    </div>
+                    <div class="system-card fast-system-card">
+                        <h3>⚡ Fast Reasoner: Real-Time Action Extraction</h3>
+                        <h4>V-JEPA 600M - Motion-Aware Encoder</h4>
+                        <p>
+                            Extracts <strong>action-conditioned features at 30Hz</strong> from the world model's predictions. 
+                            Pre-trained on Ego4D to understand motion dynamics, it translates consistent visual guidance into 
+                            precise motor commands.
+                        </p>
+                        <ul>
+                            <li>Processes current observation + future predictions</li>
+                            <li>~40ms per action chunk generation</li>
+                            <li>Captures affordances, trajectories, occlusions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p class="key-insight">
+                    <strong>Key Innovation:</strong> The world model provides <em>consistent visual guidance</em> throughout 
+                    the entire manipulation sequence, while the fast encoder ensures <strong>real-time responsiveness (30Hz)</strong>. 
+                    This dual-system design enables humanoid robots to execute complex whole-body movements with both 
+                    <strong>long-horizon coherence</strong> and <strong>immediate reactivity</strong>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Comparison -->
+    <section id="performance" class="performance-section">
+        <div class="container">
+            <div class="section-header centered">
+                <span class="section-tag">BENCHMARK RESULTS</span>
+                <h2 class="section-title">State-of-the-Art Performance</h2>
+                <p class="section-description">
+                    DualWorld outperforms leading VLA systems including π0.5 and GR00T across multiple benchmarks
+                </p>
+            </div>
+
+            <div class="comparison-image-container">
+                <img src="assets/Benchmark.png" alt="Performance Comparison Benchmark" class="comparison-chart">
+                <p class="image-caption">
+                    <strong>Performance Comparison:</strong> Success rate across diverse manipulation tasks. 
+                    DualWorld achieves significant improvements over existing methods.
+                </p>
+            </div>
+
+            <div class="pipeline-stats">
+                <div class="stat-card">
+                    <div class="stat-number">900ms</div>
+                    <div class="stat-label">Wan2.2 Generation</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">40ms</div>
+                    <div class="stat-label">Action Generation</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4x</div>
+                    <div class="stat-label">Prediction Reuse</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">60Hz</div>
+                    <div class="stat-label">Control Frequency</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" class="architecture-section">
+        <div class="container">
+            <div class="section-header centered">
+                <span class="section-tag">SYSTEM ARCHITECTURE</span>
+                <h2 class="section-title">Dual-System Design</h2>
+                <p class="section-description">
+                    Modular design: Slow Thinker (Wan2.2) + Fast Reasoner (V-JEPA) + Spatial Forcing (VGGT) + ActionDiT
+                </p>
+            </div>
+
+            <div class="architecture-diagram-container">
+                <img src="assets/DualWorldArchi.png" alt="DualWorld Architecture Diagram" class="architecture-main-image">
+                <p class="image-caption">
+                    <strong>Complete Architecture:</strong> The Slow Thinker (Wan2.2 5B) generates 33-frame 
+                    predictions in background thread, while Fast Reasoner (V-JEPA 600M) extracts action-conditioned features 
+                    in main thread. Spatial Forcing aligns with frozen VGGT-1B for implicit 3D understanding.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Asynchronous Pipeline -->
+    <section class="pipeline-section">
+        <div class="container">
+            <div class="section-header centered">
+                <span class="section-tag">ASYNCHRONOUS DESIGN</span>
+                <h2 class="section-title">Training & Inference Pipeline</h2>
+                <p class="section-description">
+                    Our asynchronous streaming mechanism: Wan2.2 requires 900ms for video prediction; 
+                    V-JEPA + ActionDiT generates actions within 40ms; control loop operates at 60Hz; 
+                    4x prediction reuse strategy amortizes computational cost.
+                </p>
+            </div>
+
+            <div class="pipeline-diagram-container">
+                <img src="assets/prediction_reuse_training.png" alt="Prediction Reuse & Training Pipeline" class="pipeline-image">
+                <p class="image-caption">
+                    <strong>Asynchronous Architecture:</strong> Background thread generates predictions (~900ms) 
+                    and populates FIFO queue (size=2). Main thread consumes with &lt;1ms latency, achieving 60Hz control. 
+                    Each prediction is reused 4 times through temporal indexing.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Method Details -->
+    <section id="method" class="method-section">
+        <div class="container">
+            <div class="section-header centered">
+                <span class="section-tag">TECHNICAL DETAILS</span>
+                <h2 class="section-title">How It Works</h2>
+            </div>
+
+            <div class="method-content">
+                <h3 class="subsection-title">Building Consistent Visual Guidance</h3>
+                <p class="method-intro">
+                    Whole-body manipulation requires maintaining <strong>visual coherence across the full sequence</strong>. 
+                    Our approach: generate explicit pixel-space predictions that preserve temporal consistency, then extract 
+                    action-relevant features at high frequency—ensuring the robot "sees" a coherent visual script throughout 
+                    complex movements.
+                </p>
+
+                <div class="method-steps">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Generate Coherent Visual Predictions</h4>
+                            <p>
+                                Wan2.2 (5B params) generates 33-frame predictions covering 6.6 seconds of manipulation. 
+                                <strong>Full VAE decoding to pixel space</strong> ensures visual consistency—objects maintain 
+                                appearance, motions follow physics, spatial relationships stay coherent. This provides a 
+                                reliable "visual script" for the entire sequence.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Extract Motion-Aware Features</h4>
+                            <p>
+                                V-JEPA processes current observation + future predictions (4 key frames) to extract 1280D features 
+                                that understand <strong>how objects should be manipulated</strong>. Pre-trained on Ego4D with 
+                                temporal objectives, it captures affordances, trajectories, and occlusion handling—translating 
+                                visual guidance into actionable understanding.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Add 3D Spatial Understanding</h4>
+                            <p>
+                                Align V-JEPA features with frozen <strong>VGGT-1B</strong> (3D-aware vision model) via cosine 
+                                similarity loss. This adds implicit depth understanding to the 2D visual guidance, enabling 
+                                precise whole-body control in 3D space without requiring depth sensors.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Generate Whole-Body Motor Commands</h4>
+                            <p>
+                                ActionDiT (200M params) generates 30-step action chunks that <strong>follow the consistent 
+                                visual guidance</strong>. By combining temporal coherence from world model predictions with 
+                                spatial precision from VGGT alignment, it produces smooth whole-body movements coordinated 
+                                across the full manipulation horizon.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-advantages">
+                    <h3 class="subsection-title">Why This Enables Whole-Body Manipulation</h3>
+                    <div class="advantage-grid">
+                        <div class="advantage-card">
+                            <h4>🎯 Visual Consistency</h4>
+                            <p>Explicit pixel predictions maintain coherent appearance and motion across full sequence, providing reliable guidance for complex movements</p>
+                        </div>
+                        <div class="advantage-card">
+                            <h4>⚡ Real-Time Responsiveness</h4>
+                            <p>Asynchronous design decouples slow prediction (900ms) from fast control (30Hz), achieving both long-horizon consistency and immediate reactivity</p>
+                        </div>
+                        <div class="advantage-card">
+                            <h4>🌐 Spatial-Temporal Understanding</h4>
+                            <p>VGGT alignment adds 3D awareness to temporally-coherent predictions, enabling whole-body coordination in physical space</p>
+                        </div>
+                        <div class="advantage-card">
+                            <h4>♻️ Continuous Guidance Stream</h4>
+                            <p>Prediction reuse (~25x per sequence) ensures smooth transitions and consistent guidance throughout manipulation without gaps</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon">DW</div>
+                        <span class="logo-text">DualWorld</span>
+                    </div>
+                    <p class="footer-tagline">Dual-System World Models for Embodied AI</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/world-mind/DualWorld" target="_blank" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                            <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+                        </svg>
+                        GitHub
+                    </a>
+                    <a href="mailto:dualworld.ai@outlook.com" aria-label="Email">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        Email
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 DualWorld. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="worldmind-script.js"></script>
+</body>
+</html>
