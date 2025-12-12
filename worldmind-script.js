@@ -386,115 +386,54 @@
         const grid = document.getElementById('demo-grid');
         if (!grid) return;
 
-        // Helper functions for robust filename handling
-        function isMp4Href(h) {
-            if (!h) return false;
-            try {
-                const dec = decodeURIComponent(h);
-                return dec.toLowerCase().endsWith('.mp4');
-            } catch (e) {
-                return h.toLowerCase().includes('.mp4');
-            }
+        // Direct video list for GitHub Pages (no directory listing support)
+        // 直接指定视频列表（GitHub Pages不支持目录列表）
+        const videoList = [
+            'Open the drawer, then put the cup and the plate in.mp4',
+            'get chips.mp4',
+            'Grasp the moldy bread, pass it to the right hand, .mp4',
+            'clean table.mp4',
+            'cup.mp4',
+            'washing.mp4',
+            'Pick up the book .mp4',
+            'Crouch down, pick up the rag, wipe the table clean.mp4',
+            'Use the spoon to stir the vegetables in the pot, p.mp4'
+        ];
+
+        if (videoList.length === 0) {
+            grid.innerHTML = '<p class="loading-text">No demonstration videos found.</p>';
+            return;
         }
 
-        function normalizeHref(h) {
-            try {
-                return decodeURIComponent(h);
-            } catch (e) {
-                return h;
-            }
-        }
+        grid.innerHTML = '';
+        videoList.forEach((fn, idx) => {
+            const item = document.createElement('div');
+            item.className = 'demo-item';
 
-        function buildSrcFromName(name) {
-            return 'assets/demo_new/' + encodeURIComponent(name).replace(/%2F/g, '/');
-        }
+            const video = document.createElement('video');
+            video.src = 'assets/demo_new/' + encodeURIComponent(fn).replace(/%2F/g, '/');
+            video.autoplay = true;
+            video.loop = true;
+            video.muted = true;
+            video.playsInline = true;
+            video.setAttribute('preload', 'metadata');
+            video.setAttribute('aria-label', fn.replace(/\.mp4$/i, ''));
 
-        fetch('assets/demo_new/')
-            .then(res => res.text())
-            .then(html => {
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                const anchors = Array.from(doc.querySelectorAll('a'))
-                    .map(a => a.getAttribute('href'))
-                    .filter(href => href);
-
-                const links = anchors
-                    .filter(isMp4Href)
-                    .map(normalizeHref)
-                    .sort();
-
-                if (links.length === 0) {
-                    grid.innerHTML = '<p class="loading-text">No demonstration videos found.</p>';
-                    return;
-                }
-
-                // Custom video order - modify this array to change the display order
-                // 自定义视频顺序 - 修改这个数组来改变显示顺序
-                const customOrder = [
-                    'Open the drawer, then put the cup and the plate in.mp4',  
-                    'get chips.mp4', 
-                    'Grasp the moldy bread, pass it to the right hand, .mp4',                                         
-                    'clean table.mp4',                                         
-                    'cup.mp4',                                                 
-                    'washing.mp4',                                             
-                    'Pick up the book .mp4',                                   
-                    'Crouch down, pick up the rag, wipe the table clean.mp4', 
-                    'Use the spoon to stir the vegetables in the pot, p.mp4'  
-                ];
-
-                // Reorder videos based on customOrder
-                const orderedLinks = [];
-                customOrder.forEach(videoName => {
-                    if (links.includes(videoName)) {
-                        orderedLinks.push(videoName);
-                    }
-                });
-                // Add any videos not in customOrder at the end
-                links.forEach(link => {
-                    if (!orderedLinks.includes(link)) {
-                        orderedLinks.push(link);
-                    }
-                });
-                const finalLinks = orderedLinks.length > 0 ? orderedLinks : links;
-
-                grid.innerHTML = '';
-                finalLinks.forEach((fn, idx) => {
-                    const item = document.createElement('div');
-                    item.className = 'demo-item';
-
-                    const video = document.createElement('video');
-                    video.src = buildSrcFromName(fn);
-                    video.autoplay = true;
-                    video.loop = true;
-                    video.muted = true;
-                    video.playsInline = true;
-                    video.setAttribute('preload', 'metadata');
-                    video.setAttribute('aria-label', fn.replace(/\.mp4$/i, ''));
-
-                    // Error handler
-                    video.addEventListener('error', () => {
-                        console.warn('Video loading error:', fn);
-                        const fallback = 'assets/demo_new/' + fn;
-                        if (video.src !== fallback) {
-                            video.src = fallback;
-                        }
-                    });
-
-                    item.appendChild(video);
-                    grid.appendChild(item);
-                });
-
-                // Apply special layout for exactly 9 videos
-                if (finalLinks.length === 9) {
-                    grid.classList.add('layout-9');
-                } else {
-                    grid.classList.remove('layout-9');
-                }
-            })
-            .catch(err => {
-                console.warn('Failed to load demo videos:', err);
-                grid.innerHTML = '<p class="loading-text">Failed to load demonstrations. Please check server configuration.</p>';
+            // Error handler
+            video.addEventListener('error', () => {
+                console.warn('Video loading error:', fn);
             });
+
+            item.appendChild(video);
+            grid.appendChild(item);
+        });
+
+        // Apply special layout for exactly 9 videos
+        if (videoList.length === 9) {
+            grid.classList.add('layout-9');
+        } else {
+            grid.classList.remove('layout-9');
+        }
     };
 
     // ===================================
