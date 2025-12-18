@@ -232,7 +232,7 @@ This design allows learning from large-scale, diverse-quality datasets—includi
                     <div class="stat-label">Prediction Reuse</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">60Hz</div>
+                    <div class="stat-number">30Hz</div>
                     <div class="stat-label">Control Frequency</div>
                 </div>
             </div>
@@ -269,7 +269,7 @@ This design allows learning from large-scale, diverse-quality datasets—includi
                 <h2 class="section-title">Training & Inference Pipeline</h2>
                 <p class="section-description">
                     Our asynchronous streaming mechanism: Wan2.2 requires 900ms for video prediction; 
-                    V-JEPA + ActionDiT generates actions within 40ms; control loop operates at 60Hz; 
+                    V-JEPA + ActionDiT generates actions within 40ms; control loop operates at 30Hz; 
                     4x prediction reuse strategy amortizes computational cost.
                 </p>
             </div>
@@ -278,7 +278,7 @@ This design allows learning from large-scale, diverse-quality datasets—includi
                 <img src="assets/prediction_reuse_training.png" alt="Prediction Reuse & Training Pipeline" class="pipeline-image">
                 <p class="image-caption">
                     <strong>Asynchronous Architecture:</strong> Background thread generates predictions (~900ms) 
-                    and populates FIFO queue (size=2). Main thread consumes with &lt;1ms latency, achieving 60Hz control. 
+                    and populates FIFO queue (size=2). Main thread consumes with &lt;1ms latency, achieving 30Hz control. 
                     Each prediction is reused 4 times through temporal indexing.
                 </p>
             </div>
@@ -369,7 +369,7 @@ This design allows learning from large-scale, diverse-quality datasets—includi
                         </div>
                         <div class="advantage-card">
                             <h4>♻️ Continuous Guidance Stream</h4>
-                            <p>Prediction reuse (~25x per sequence) ensures smooth transitions and consistent guidance throughout manipulation without gaps</p>
+                            <p>Prediction reuse (~4x per sequence) ensures smooth transitions and consistent guidance throughout manipulation without gaps</p>
                         </div>
                     </div>
                 </div>
